@@ -1,0 +1,334 @@
+/* ===================================
+   기본 전역 스타일
+=================================== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* 스크롤바 커스터마이징 (웹킷 계열) */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+
+/* ===================================
+   스크롤 애니메이션
+=================================== */
+
+/* 초기 상태: 투명 + 아래에서 올라오는 효과 */
+.animate-target {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* JS의 IntersectionObserver가 .visible 클래스를 추가하면 나타남 */
+.animate-target.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 접근성: 모션 감소 선호 시 애니메이션 비활성화 */
+@media (prefers-reduced-motion: reduce) {
+  .animate-target {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+
+/* ===================================
+   네비게이션
+=================================== */
+
+/* 스크롤 시 navbar 그림자 추가 (JS가 .scrolled 클래스 토글) */
+#navbar.scrolled {
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.08);
+}
+.dark #navbar.scrolled {
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* 데스크톱 네비게이션 링크 */
+.nav-link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6b7280;
+  transition: color 0.2s;
+  position: relative;
+  padding-bottom: 2px;
+}
+.nav-link:hover {
+  color: #2563eb;
+}
+.nav-link.active {
+  color: #2563eb;
+}
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #3b82f6;
+  border-radius: 1px;
+}
+.dark .nav-link {
+  color: #9ca3af;
+}
+.dark .nav-link:hover {
+  color: #60a5fa;
+}
+.dark .nav-link.active {
+  color: #60a5fa;
+}
+.dark .nav-link.active::after {
+  background: #60a5fa;
+}
+
+/* 모바일 네비게이션 링크 */
+.mobile-nav-link {
+  display: block;
+  padding: 0.625rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.925rem;
+  font-weight: 500;
+  color: #4b5563;
+  transition: background 0.15s, color 0.15s;
+}
+.mobile-nav-link:hover {
+  background: #f3f4f6;
+  color: #2563eb;
+}
+.dark .mobile-nav-link {
+  color: #9ca3af;
+}
+.dark .mobile-nav-link:hover {
+  background: #1f2937;
+  color: #60a5fa;
+}
+
+
+/* ===================================
+   섹션 공통
+=================================== */
+
+/* 섹션 타이틀 */
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: #111827;
+  position: relative;
+}
+.dark .section-title {
+  color: #f9fafb;
+}
+/* 하단 밑줄 장식 */
+.section-title::after {
+  content: '';
+  display: block;
+  width: 3rem;
+  height: 3px;
+  background: #3b82f6;
+  margin: 0.625rem auto 0;
+  border-radius: 2px;
+}
+
+
+/* ===================================
+   버튼
+=================================== */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.625rem 1.5rem;
+  background: #3b82f6;
+  color: #ffffff;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.925rem;
+  transition: background 0.2s, transform 0.15s;
+  text-decoration: none;
+}
+.btn-primary:hover {
+  background: #2563eb;
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.625rem 1.5rem;
+  border: 2px solid #3b82f6;
+  color: #3b82f6;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.925rem;
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+  text-decoration: none;
+}
+.btn-outline:hover {
+  background: #3b82f6;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+.dark .btn-outline {
+  border-color: #60a5fa;
+  color: #60a5fa;
+}
+.dark .btn-outline:hover {
+  background: #60a5fa;
+  color: #111827;
+}
+
+
+/* ===================================
+   스킬 배지
+=================================== */
+
+/* 기본 (파란색) */
+.skill-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+  border-radius: 9999px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+.dark .skill-badge {
+  background: #1e3a5f;
+  color: #93c5fd;
+  border-color: #1e40af;
+}
+
+/* 초록색 (Backend) */
+.skill-badge--green {
+  background: #f0fdf4;
+  color: #15803d;
+  border-color: #bbf7d0;
+}
+.dark .skill-badge--green {
+  background: #14532d;
+  color: #86efac;
+  border-color: #166534;
+}
+
+/* 보라색 (Tools) */
+.skill-badge--purple {
+  background: #faf5ff;
+  color: #7e22ce;
+  border-color: #e9d5ff;
+}
+.dark .skill-badge--purple {
+  background: #3b0764;
+  color: #d8b4fe;
+  border-color: #6b21a8;
+}
+
+
+/* ===================================
+   프로젝트 카드
+=================================== */
+
+/* 기술 태그 */
+.project-tag {
+  display: inline-block;
+  padding: 0.2rem 0.625rem;
+  background: #eff6ff;
+  color: #3b82f6;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+.dark .project-tag {
+  background: #1e3a5f;
+  color: #93c5fd;
+}
+
+/* GitHub 링크 */
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6b7280;
+  transition: color 0.2s;
+  text-decoration: none;
+}
+.project-link:hover {
+  color: #111827;
+}
+.dark .project-link {
+  color: #9ca3af;
+}
+.dark .project-link:hover {
+  color: #f9fafb;
+}
+
+/* Demo 링크 */
+.project-link--demo {
+  color: #3b82f6;
+}
+.project-link--demo:hover {
+  color: #1d4ed8;
+}
+.dark .project-link--demo {
+  color: #60a5fa;
+}
+.dark .project-link--demo:hover {
+  color: #93c5fd;
+}
+
+
+/* ===================================
+   Contact 링크
+=================================== */
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  color: #4b5563;
+  font-size: 0.925rem;
+  font-weight: 500;
+  transition: color 0.2s, transform 0.15s;
+  text-decoration: none;
+}
+.contact-link:hover {
+  color: #3b82f6;
+  transform: translateY(-2px);
+}
+.dark .contact-link {
+  color: #9ca3af;
+}
+.dark .contact-link:hover {
+  color: #60a5fa;
+}
