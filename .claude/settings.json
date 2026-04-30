@@ -3,6 +3,14 @@
     "allow": [
       "Skill(update-config)",
       "Bash"
-    ]
-  }
-}
+    ],
+    "deny": [],
+    "ask": [],
+    "defaultMode": "plan"
+  },
+  "outputStyle": "Explanatory"
+} 
+ 
+
+
+
